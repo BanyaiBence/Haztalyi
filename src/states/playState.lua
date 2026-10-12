@@ -50,6 +50,7 @@ function playState:setupWorld()
     
     -- TODO: Set up camera to follow player
 end
+local Gamestate = require('hump.gamestate')
 
 function playState:enter()
     -- Called when entering this state
