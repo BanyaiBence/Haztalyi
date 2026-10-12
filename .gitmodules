@@ -1,0 +1,15 @@
+[submodule "lib/anim8"]
+	path = lib/anim8
+	url = https://github.com/kikito/anim8
+[submodule "lib/hump"]
+	path = lib/hump
+	url = https://github.com/vrld/hump.git
+[submodule "lib/bump"]
+	path = lib/bump
+	url = https://github.com/kikito/bump.lua.git
+[submodule "lib/classic"]
+	path = lib/classic
+	url = https://github.com/rxi/classic.git
+[submodule "lib/Concord"]
+	path = lib/Concord
+	url = https://github.com/Concord-Studio/Concord.git
