@@ -1,4 +1,5 @@
-local GaneState = require('hump.gamestate')
+local GameState = require('lib.hump.gamestate')
+local playState = require('states.playState')
 local menuState = {}
 
 function menuState:init()
@@ -31,7 +32,7 @@ function menuState:keypressed(key)
         self.selected = math.min(#self.options, self.selected + 1)
     elseif key == "return" then 
         if self.selected == 1 then
-            -- TODO: Switch to play state
+            GameState.switch(playState)
         elseif self.selected == 3 then
             love.event.quit()
         end

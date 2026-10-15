@@ -1,5 +1,5 @@
-local Gamestate = require('hump.gamestate')
-local concord = require('concord')
+local Gamestate = require('lib.hump.gamestate')
+local concord = require('lib.concord.concord')
 local menuState = require('states.menuState')
 local playState = require('states.playState')
 
@@ -8,16 +8,3 @@ function love.load()
     Gamestate.registerEvents()
     Gamestate.switch(menuState)
 end
-
-function love.update(dt)
-    -- Handled by Gamestate
-end
-
-function love.draw()
-    -- Handled by Gamestate
-end
-
-function love.keypressed(key)
-    -- Handled by Gamestate
-end
-

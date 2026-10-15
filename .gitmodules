@@ -13,3 +13,6 @@
 [submodule "lib/Concord"]
 	path = lib/Concord
 	url = https://github.com/Concord-Studio/Concord.git
+[submodule "lib/bitser"]
+	path = lib/bitser
+	url = https://github.com/gvx/bitser.git

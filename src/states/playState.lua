@@ -1,28 +1,23 @@
-local Gamestate = require('hump.gamestate')
-local concord = require('concord')
+local bitser = require('lib.bitser.bitser')
+local Gamestate = require('lib.hump.gamestate')
+local concord = require('lib.concord')
+
 local entityFactory = require('entities.entityFactory')
 local inputSystem = require('systems.inputSystem')
 local playerControlSystem = require('systems.playerControlSystem')
-local plantingSystem = require('systems.plantingSystem')
-local growthSystem = require('systems.growthSystem')
-local harvestSystem = require('systems.harvestSystem')
 local renderSystem = require('systems.renderSystem')
-local collisionSystem = require('systems.collisionSystem')
 local cameraSystem = require('systems.cameraSystem')
 
 local playState = {}
 local world
 
 function playState:init()
+    -- Create the Concord world
     world = concord.world()
     
     -- Register systems in update order
     world:addSystem(inputSystem)
     world:addSystem(playerControlSystem)
-    world:addSystem(plantingSystem)
-    world:addSystem(growthSystem)
-    world:addSystem(harvestSystem)
-    world:addSystem(collisionSystem)
     world:addSystem(cameraSystem)
     world:addSystem(renderSystem) -- Render last
     
@@ -31,9 +26,22 @@ function playState:init()
 end
 
 function playState:setupWorld()
+    local assetLoader = require('utils.assetLoader')
+    -- Assuming this returns a table with { image = ..., animation = ... } (from anim8)
+    local playerSpriteData = assetLoader.loadAnimation(
+        'assets/graphics/player.png',
+        32, 32,
+        4
+    )
+
     -- Create player
     local player = entityFactory.createPlayer(world, 400, 300)
-    -- TODO: Set player sprite animation
+    
+    -- Assign anim8 data to the player's sprite component
+    local spriteComp = player:get('sprite')
+    spriteComp.spriteSheet = playerSpriteData.image 
+    spriteComp.animation = playerSpriteData.animation
+    player.sprite = spriteComp
     
     -- Create tilemap (simple grid for now)
     local tileWidth = 32
@@ -45,23 +53,26 @@ function playState:setupWorld()
         for x = 0, mapWidth-1 do
             local isTilled = false -- Start with untilled soil
             local tile = entityFactory.createTile(world, x * tileWidth, y * tileHeight, isTilled)
+            -- TODO: Set tile sprite based on tilled state
         end
     end
     
     -- TODO: Set up camera to follow player
 end
-local Gamestate = require('hump.gamestate')
 
 function playState:enter()
     -- Called when entering this state
 end
 
+-- --- Hump Gamestate Callbacks ---
+-- Concord uses these events to trigger systems
+
 function playState:update(dt)
-    world:update(dt)
+    world:emit('update', dt)
 end
 
 function playState:draw()
-    world:draw()
+    world:emit('draw')
 end
 
 function playState:keypressed(key)
