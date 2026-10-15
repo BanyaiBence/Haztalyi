@@ -1,18 +1,18 @@
-[submodule "lib/anim8"]
-	path = lib/anim8
+[submodule "src/lib/anim8"]
+	path = src/lib/anim8
 	url = https://github.com/kikito/anim8
-[submodule "lib/hump"]
-	path = lib/hump
+[submodule "src/lib/hump"]
+	path = src/lib/hump
 	url = https://github.com/vrld/hump.git
-[submodule "lib/bump"]
-	path = lib/bump
+[submodule "src/lib/bump"]
+	path = src/lib/bump
 	url = https://github.com/kikito/bump.lua.git
-[submodule "lib/classic"]
-	path = lib/classic
+[submodule "src/lib/classic"]
+	path = src/lib/classic
 	url = https://github.com/rxi/classic.git
-[submodule "lib/Concord"]
-	path = lib/Concord
+[submodule "src/lib/Concord"]
+	path = src/lib/Concord
 	url = https://github.com/Concord-Studio/Concord.git
-[submodule "lib/bitser"]
-	path = lib/bitser
+[submodule "src/lib/bitser"]
+	path = src/lib/bitser
 	url = https://github.com/gvx/bitser.git
