@@ -1,10 +1,9 @@
 local Gamestate = require('lib.hump.gamestate')
-local concord = require('lib.concord.concord')
-local menuState = require('states.menuState')
-local playState = require('states.playState')
 
 function love.load()
-    world = concord.world()
+    -- Pixel art: never blur when scaling.
+    love.graphics.setDefaultFilter('nearest', 'nearest')
+
     Gamestate.registerEvents()
-    Gamestate.switch(menuState)
+    Gamestate.switch(require('states.menu'))
 end
